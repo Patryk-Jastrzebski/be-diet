@@ -4,6 +4,8 @@ from fastapi.middleware.cors import CORSMiddleware
 
 from src.api.endpoints import router as api_endpoint_router
 from src.config.manager import settings
+from src.utilities.exceptions.ExceptionHandler import ExceptionHandler
+
 
 def initialize_backend_application() -> fastapi.FastAPI:
     app = fastapi.FastAPI(**settings.set_backend_app_attributes)  # type: ignore
@@ -16,6 +18,7 @@ def initialize_backend_application() -> fastapi.FastAPI:
     )
 
     app.include_router(router=api_endpoint_router, prefix=settings.API_PREFIX)
+    ExceptionHandler.init_listeners(app_=app)
 
     return app
 
