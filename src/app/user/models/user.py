@@ -1,9 +1,7 @@
 import datetime
-
 import pydantic
 
 from src.models.schemas.base import BaseSchemaModel
-
 
 class AccountInCreate(BaseSchemaModel):
     username: str

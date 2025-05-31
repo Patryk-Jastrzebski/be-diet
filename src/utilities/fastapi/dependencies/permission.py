@@ -22,16 +22,15 @@ class IsAuthenticated(BasePermission):
     async def has_permission(self, request: Request) -> bool:
         return request.user.id is not None
 
-
-class IsAdmin(BasePermission):
-    exception = UnauthorizedException
-
-    async def has_permission(self, request: Request) -> bool:
-        user_id = request.user.id
-        if not user_id:
-            return False
-
-        return await UserService().is_admin(user_id=user_id)
+# class IsAdmin(BasePermission):
+#     exception = UnauthorizedException
+#
+#     async def has_permission(self, request: Request) -> bool:
+#         user_id = request.user.id
+#         if not user_id:
+#             return False
+#
+#         return await UserService().is_admin(user_id=user_id)
 
 
 class AllowAll(BasePermission):
